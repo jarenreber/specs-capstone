@@ -20,3 +20,5 @@ At this time I do not have a seed file set up so tables will need to be created 
 You will need to have nodemon installed to run the backend.
 In one terminal run `nodemon server` and in another terminal run `npm run start`.
 This will run the backend and the front end respectively.
+
+### Thanks for checking out my repository!
