@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -41,6 +41,10 @@ const Edit = () => {
     });
   };
 
+  const cancelHandler = () => {
+    navigate("/");
+  };
+
   const validationSchema = Yup.object({
     updatedText: Yup.string().required("You must provide a description"),
   });
@@ -55,7 +59,7 @@ const Edit = () => {
   };
 
   return (
-    <div>
+    <div className="mt-20 mx-auto text-text">
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -71,21 +75,36 @@ const Edit = () => {
             .catch((err) => console.log("FE error on edit post", err));
         }}
       >
-        <Form>
-          <Field name="updatedImg_url" placeholder="Enter an image url" />
+        <Form className="flex flex-col space-y-2 mx-auto border border-text rounded-3xl p-7 w-96 shadow-2xl">
+          <h3 className="m-auto border-b text-lg">Edit Post</h3>
+          <Field
+            className="border border-text"
+            name="updatedImg_url"
+            placeholder="Enter an image url"
+          />
           <Field
             as="textarea"
             name="updatedText"
             placeholder="Enter description"
             rows="3"
+            className="border border-text "
           />
           <ErrorMessage name="updatedText" />
-          <button type="submit" onClick={postUpdated}>
+          <button onClick={cancelHandler} className="border border-text">
+            Cancel
+          </button>
+          <button
+            className="border border-text p-2"
+            type="submit"
+            onClick={postUpdated}
+          >
             Confirm Edit
+          </button>
+          <button className="border border-text p-2" onClick={deleteHandler}>
+            Delete
           </button>
         </Form>
       </Formik>
-      <button onClick={deleteHandler}>Delete</button>
     </div>
   );
 };

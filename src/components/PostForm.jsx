@@ -29,8 +29,8 @@ const PostForm = () => {
   });
 
   const validationSchema = Yup.object({
-    username: Yup.string().required("You must provide a username"),
-    text: Yup.string().required("You must provide a description"),
+    username: Yup.string().required("Please provide a username"),
+    text: Yup.string().required("Please provide a description"),
     canyon_select: Yup.string()
       .required("Please select a canyon")
       .nullable("Please select a canyon"),
@@ -67,7 +67,11 @@ const PostForm = () => {
           <h1 className="m-auto border-b text-lg">Thanks for Sharing!</h1>
           <label>Username</label>
           <Field name="username" className="border border-text w-full" />
-          <ErrorMessage name="username" />
+          <ErrorMessage
+            name="username"
+            className="border-2 border-error"
+            component="div"
+          />
           <label>Image URL</label>
           <Field name="img_url" className="border border-text" />
           <label>Canyon Selector</label>
@@ -81,7 +85,11 @@ const PostForm = () => {
             </option>
             {canyonsMapped}
           </Field>
-          <ErrorMessage name="canyon_select" />
+          <ErrorMessage
+            name="canyon_select"
+            className="border-2 border-error"
+            component="div"
+          />
           <label>Caption</label>
           <Field
             className="border border-text"
@@ -90,11 +98,15 @@ const PostForm = () => {
             placeholder="Enter Experience"
             rows="3"
           />
-          <ErrorMessage name="text" />
+          <ErrorMessage
+            name="text"
+            className="border-2 border-error"
+            component="div"
+          />
           <button
             type="submit"
             onClick={postHandler}
-            className="border border-text"
+            className="border border-text bg-apricot"
           >
             Publish Post
           </button>

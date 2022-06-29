@@ -38,9 +38,22 @@ module.exports = {
       .catch((err) => console.log("error on create post", err));
   },
   createCanyon: (req, res) => {
-    const {} = req.body;
-    sequelize.query(`
-      INSERT INTO canyons(name, image_url)
-    `);
+    const { name, image_url, location, description } = req.body;
+    sequelize
+      .query(
+        `
+      INSERT INTO canyons(name, image_url, location, description)
+      VALUES(
+        '${name}',
+        '${image_url}',
+        '${location}',
+        '${description}'
+      );
+    `
+      )
+      .then(() => res.status(200).send("Successfully added canyon"))
+      .catch((err) => {
+        console.log("Error on create canyon", err);
+      });
   },
 };

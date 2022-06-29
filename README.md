@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Canyon Social
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Devmountain Specializations Capstone
 
-## Available Scripts
+This React app was built to prove and test my knowledge of React and everything learned at Devmountain bootcamp.
 
-In the project directory, you can run:
+### Build
 
-### `npm start`
+This app was built with ReactJS in the front end and NodeJS in the backend. The Database is PostgreSQL.
+To see all dependencies checkout the package.json.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### To Run this Project Locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Fork the repository and clone it your preferred way.
+Run `npm i` to install dependencies.
+You will need a database. Heroku has free versions where you can then create a postgres database. Add into directory at the root level a .env file with a SERVER_PORT variable and a CONNECTION_STRING variable where the SERVER_PORT is equal to a port not in use and the CONNECTION_STRING is your URI string from Heroku.
 
-### `npm test`
+At this time I do not have a seed file set up so tables will need to be created in the Database with a users, canyons, and posts table. A Seed file is in the works to simplify this process.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You will need to have nodemon installed to run the backend.
+In one terminal run `nodemon server` and in another terminal run `npm run start`.
+This will run the backend and the front end respectively.

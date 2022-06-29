@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft, AiFillHome, AiFillEdit } from "react-icons/ai";
+import { GiCliffCrossing } from "react-icons/gi";
 
 const axios = require("axios");
 
@@ -74,6 +75,20 @@ const Nav = () => {
             }`}
           >
             Create Post
+          </h3>
+        </Link>
+        <Link to={"/createCanyon"}>
+          <GiCliffCrossing
+            className={`text-slateGray text-4xl cursor-pointer block float-left duration-500 ${
+              open && "rotate-[360deg]"
+            }`}
+          />
+          <h3
+            className={`origin-left font-medium text-xl duration-300 ${
+              !open && "scale-0"
+            }`}
+          >
+            Add Canyon
           </h3>
         </Link>
         <div

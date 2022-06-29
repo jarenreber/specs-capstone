@@ -10,7 +10,7 @@ const {
   postsCanyon,
   getPost,
 } = require("./controllerGet");
-const { createPost } = require("./controllerPost");
+const { createPost, createCanyon } = require("./controllerPost");
 const { editPost } = require("./controllerPatch");
 const { deletePost } = require("./controllerDelete");
 
@@ -23,6 +23,7 @@ app.get("/api/v1/posts", postsCanyon);
 app.get("/api/v1/post", getPost);
 
 app.post("/api/v1/post", createPost);
+app.post("/api/v1/canyon", createCanyon);
 
 app.patch("/api/v1/post", editPost);
 

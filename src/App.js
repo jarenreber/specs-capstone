@@ -7,6 +7,7 @@ import Canyon from "./components/Canyon";
 import LoginForm from "./components/LoginForm";
 import PostForm from "./components/PostForm";
 import Edit from "./components/Edit";
+import CanyonForm from "./components/CanyonForm";
 import "./input.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/canyons/:canyon" element={<Canyon />} />
         <Route path="/createPost" element={<PostForm />} />
+        <Route path="/createCanyon" element={<CanyonForm />} />
         <Route path="/editPost" element={<Edit />} />
       </Routes>
     </div>

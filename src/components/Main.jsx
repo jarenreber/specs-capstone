@@ -8,7 +8,7 @@ const Main = () => {
       <h1 className="text-3xl font-bold">Hello World!</h1>
       <h2 className="text-xl pt-6">Welcome to Canyon Social!</h2>
       <div>
-        <img src={homeHero} alt="Zion National Park" className="pt-6 m-0" />
+        <img src={homeHero} alt="Zion National Park" className=" p-20 m-0" />
       </div>
     </div>
   );

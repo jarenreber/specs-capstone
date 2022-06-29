@@ -9,6 +9,7 @@ module.exports = {
       wine: "#732C2C",
       sienna: "#420C14",
       text: "#333333",
+      error: "#ff0033",
     },
   },
   plugins: [],
