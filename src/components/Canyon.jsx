@@ -27,7 +27,7 @@ const Canyon = () => {
           className="w-2/4 mx-auto"
         />
         <p className="mx-auto min-m-3">Location: {canyonState.location}</p>
-        <p className="mx-auto max-w-4xl m-3">{canyonState.description}</p>
+        <p className="mx-auto max-w-4xl m-3 p-8">{canyonState.description}</p>
         <div className="border-b m-4"></div>
       </section>
       <Posts className="flex flex-row" />

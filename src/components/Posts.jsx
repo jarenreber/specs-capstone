@@ -19,9 +19,12 @@ const Posts = () => {
       .catch((err) => console.log("Error on get posts", err));
   }, [canyon]);
   const postsListed = posts.map((el, index) => {
-    console.log(el);
+    // console.log("😀 el", el, "👺 index", index);
     return (
-      <div key={index} className="m-4 border p-3 rounded-xl w-2/5">
+      <div
+        key={index}
+        className="m-4 border p-3 rounded-xl w-2/5 border-pinkOfNY border-8"
+      >
         <div className="flex">
           <BiUserCircle className="text-text text-4xl" />
           <h3 className="text-text text-3xl">{el.username}</h3>
@@ -34,9 +37,17 @@ const Posts = () => {
             className="w-80 h-80 p-3 object-cover"
           />
           <p className="">{el.date}</p>
-          <Link to={"/editPost"} state={{ postid: el.postid }}>
-            <button className="border p-2">Edit</button>
-          </Link>
+          {sessionStorage.getItem("username") === el.username &&
+            ((
+              <Link to={"/editPost"} state={{ postid: el.postid }}>
+                <button className="border p-2 bg-aero">Edit</button>
+              </Link>
+            ) ||
+              (sessionStorage.getItem("isAdmin") === "true" && (
+                <Link to={"/editPost"} state={{ postid: el.postid }}>
+                  <button className="border p-2 bg-aero">Edit</button>
+                </Link>
+              )))}
         </div>
       </div>
     );

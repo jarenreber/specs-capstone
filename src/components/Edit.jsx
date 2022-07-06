@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -27,6 +27,9 @@ const Edit = () => {
 
   const deleteHandler = () => {
     MySwal.fire({
+      customClass: {
+        confirmButton: "bg-aero p-3",
+      },
       title: "<h2>Hold Up...</h2>",
       text: "Are you sure you want to delete this post?",
       showCancelButton: true,
@@ -51,6 +54,9 @@ const Edit = () => {
 
   const postUpdated = () => {
     MySwal.fire({
+      customClass: {
+        confirmButton: "bg-aero p-3",
+      },
       title: "<h2>Post Updated!!!</h2>",
       text: "Way to go!!! 👍",
       confirmButtonText: "<Link>Head to Home Page</Link>",
@@ -75,7 +81,7 @@ const Edit = () => {
             .catch((err) => console.log("FE error on edit post", err));
         }}
       >
-        <Form className="flex flex-col space-y-2 mx-auto border border-text rounded-3xl p-7 w-96 shadow-2xl">
+        <Form className="flex flex-col space-y-2 mx-auto border border-pinkOfNY rounded-3xl p-7 w-96 shadow-2xl bg-pinkOfNY">
           <h3 className="m-auto border-b text-lg">Edit Post</h3>
           <Field
             className="border border-text"
@@ -90,17 +96,23 @@ const Edit = () => {
             className="border border-text "
           />
           <ErrorMessage name="updatedText" />
-          <button onClick={cancelHandler} className="border border-text">
+          <button
+            onClick={cancelHandler}
+            className="border border-text  bg-aero"
+          >
             Cancel
           </button>
           <button
-            className="border border-text p-2"
+            className="border border-text p-2 bg-aero"
             type="submit"
             onClick={postUpdated}
           >
             Confirm Edit
           </button>
-          <button className="border border-text p-2" onClick={deleteHandler}>
+          <button
+            className="border border-text p-2  bg-aero"
+            onClick={deleteHandler}
+          >
             Delete
           </button>
         </Form>

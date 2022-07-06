@@ -13,10 +13,14 @@ const CanyonForm = () => {
 
   const canyonHandler = () => {
     MySwal.fire({
+      customClass: {
+        confirmButton: "bg-aero p-3",
+      },
       title: "<h2>Canyon Added</h2>",
       text: "Thanks for Contributing",
       confirmButtonColor: "Head to Home Page",
       allowOutsideClick: false,
+      buttonsStyling: false,
     }).then(() => navigate("/"));
   };
 
@@ -40,54 +44,56 @@ const CanyonForm = () => {
           console.log(values);
           axios
             .post("http://localhost:4005/api/v1/canyon", values)
-            .then((res) => console.log(res))
+            .then(() => canyonHandler())
             .catch((err) => console.log("FE error on add canyon", err));
         }}
         validationSchema={validationSchema}
       >
-        <Form className="flex flex-col space-y-2 mx-auto border border-text rounded-3xl p-7 w-96 shadow-2xl">
-          <h1 className="m-auto border-b text-lg">Add a Canyon</h1>
-          <label>Canyon Name</label>
-          <Field name="name" className="border border-text w-full" />
-          <ErrorMessage
-            name="name"
-            className="border-2 border-error"
-            component="div"
-          />
-          <label>Image URL</label>
-          <Field name="image_url" className="border border-text w-full" />
-          <ErrorMessage
-            name="image_url"
-            className="border-2 border-error"
-            component="div"
-          />
-          <label>Location</label>
-          <Field name="location" className="border border-text w-full" />
-          <ErrorMessage
-            name="location"
-            className="border-2 border-error"
-            component="div"
-          />
-          <label>Brief Description of Canyon</label>
-          <Field
-            name="description"
-            as="textarea"
-            className="border border-text w-full"
-            rows="3"
-          />
-          <ErrorMessage
-            name="description"
-            className="border-2 border-error"
-            component="div"
-          />
-          <button
-            type="submit"
-            onClick={canyonHandler}
-            className="border border-text bg-apricot"
-          >
-            Publish Canyon
-          </button>
-        </Form>
+        {({ isSubmitting }) => (
+          <Form className="flex flex-col space-y-2 mx-auto border border-text rounded-3xl p-7 w-96 shadow-2xl bg-pinkOfNY">
+            <h1 className="m-auto border-b text-lg">Add a Canyon</h1>
+            <label>Canyon Name</label>
+            <Field name="name" className="border border-text w-full" />
+            <ErrorMessage
+              name="name"
+              className="border-2 border-error"
+              component="div"
+            />
+            <label>Image URL</label>
+            <Field name="image_url" className="border border-text w-full" />
+            <ErrorMessage
+              name="image_url"
+              className="border-2 border-error"
+              component="div"
+            />
+            <label>Location</label>
+            <Field name="location" className="border border-text w-full" />
+            <ErrorMessage
+              name="location"
+              className="border-2 border-error"
+              component="div"
+            />
+            <label>Brief Description of Canyon</label>
+            <Field
+              name="description"
+              as="textarea"
+              className="border border-text w-full"
+              rows="3"
+            />
+            <ErrorMessage
+              name="description"
+              className="border-2 border-error"
+              component="div"
+            />
+            <button
+              type="submit"
+              className="border border-text bg-aero"
+              disabled={isSubmitting}
+            >
+              Publish Canyon
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

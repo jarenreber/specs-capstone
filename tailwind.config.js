@@ -10,6 +10,10 @@ module.exports = {
       sienna: "#420C14",
       text: "#333333",
       error: "#ff0033",
+      pinkOfNY: "#D28989",
+    },
+    fontFamily: {
+      body: ["Oswald"],
     },
   },
   plugins: [],

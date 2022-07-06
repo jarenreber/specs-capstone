@@ -13,6 +13,8 @@ const PostForm = () => {
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
 
+  const username = sessionStorage.getItem("username");
+
   useEffect(() => {
     axios
       .get("http://localhost:4005/api/v1/canyons")
@@ -29,7 +31,7 @@ const PostForm = () => {
   });
 
   const validationSchema = Yup.object({
-    username: Yup.string().required("Please provide a username"),
+    // username: Yup.string().required("Please provide a username"),
     text: Yup.string().required("Please provide a description"),
     canyon_select: Yup.string()
       .required("Please select a canyon")
@@ -38,6 +40,9 @@ const PostForm = () => {
 
   const postHandler = () => {
     MySwal.fire({
+      customClass: {
+        confirmButton: "bg-aero p-3",
+      },
       title: "<h2>Post Submitted</h2>",
       text: "Thanks for Contributing",
       confirmButtonColor: "Head to Home Page",
@@ -49,7 +54,7 @@ const PostForm = () => {
     <div className="mt-20 mx-auto text-text">
       <Formik
         initialValues={{
-          username: "",
+          // username: "",
           text: "",
           img_url: "",
           canyon_select: null,
@@ -57,60 +62,68 @@ const PostForm = () => {
         validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
+          const id = sessionStorage.getItem("user");
+          console.log(id);
+          const { text, img_url, canyon_select } = values;
+          const bodyObject = {
+            text: text,
+            img_url: img_url,
+            canyon_select: canyon_select,
+            id: id,
+          };
           axios
-            .post("http://localhost:4005/api/v1/post", values)
-            .then((res) => console.log(res))
+            .post("http://localhost:4005/api/v1/post", bodyObject)
+            .then(() => postHandler())
             .catch((err) => console.log("FE error on create post", err));
         }}
       >
-        <Form className="flex flex-col space-y-2 mx-auto border border-text rounded-3xl p-7 w-96 shadow-2xl">
-          <h1 className="m-auto border-b text-lg">Thanks for Sharing!</h1>
-          <label>Username</label>
-          <Field name="username" className="border border-text w-full" />
-          <ErrorMessage
-            name="username"
-            className="border-2 border-error"
-            component="div"
-          />
-          <label>Image URL</label>
-          <Field name="img_url" className="border border-text" />
-          <label>Canyon Selector</label>
-          <Field
-            as="select"
-            name="canyon_select"
-            className="border border-text"
-          >
-            <option value="Select a Canyon" defaultValue selected disabled>
-              Canyons
-            </option>
-            {canyonsMapped}
-          </Field>
-          <ErrorMessage
-            name="canyon_select"
-            className="border-2 border-error"
-            component="div"
-          />
-          <label>Caption</label>
-          <Field
-            className="border border-text"
-            as="textarea"
-            name="text"
-            placeholder="Enter Experience"
-            rows="3"
-          />
-          <ErrorMessage
-            name="text"
-            className="border-2 border-error"
-            component="div"
-          />
-          <button
-            type="submit"
-            onClick={postHandler}
-            className="border border-text bg-apricot"
-          >
-            Publish Post
-          </button>
-        </Form>
+        {({ isSubmitting }) => (
+          <Form className="flex flex-col space-y-2 mx-auto border border-text rounded-3xl p-7 w-96 shadow-2xl bg-pinkOfNY">
+            <h1 className="m-auto border-b text-lg">Thanks for Sharing!</h1>
+            <h3>{`${username}`}</h3>
+            {/* <label>Username</label>
+            <Field name="username" className="border border-text w-full" />
+            <ErrorMessage
+              name="username"
+              className="border-2 border-error"
+              component="div"
+            /> */}
+            <label>Image URL</label>
+            <Field name="img_url" className="border border-text" />
+            <label>Canyon Selector</label>
+            <Field
+              as="select"
+              name="canyon_select"
+              className="border border-text"
+            >
+              <option value="Select a Canyon" defaultValue selected disabled>
+                Canyons
+              </option>
+              {canyonsMapped}
+            </Field>
+            <ErrorMessage
+              name="canyon_select"
+              className="border-2 border-error"
+              component="div"
+            />
+            <label>Caption</label>
+            <Field
+              className="border border-text"
+              as="textarea"
+              name="text"
+              placeholder="Enter Experience"
+              rows="3"
+            />
+            <ErrorMessage
+              name="text"
+              className="border-2 border-error"
+              component="div"
+            />
+            <button type="submit" className="border border-text bg-aero">
+              Publish Post
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
